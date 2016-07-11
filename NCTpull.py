@@ -99,6 +99,16 @@ for indic11 in alist:
     #item1 = item.read()
    # y=re.findall('<agency>(.*)</agency>',str(item))
     print ("PRIMARY COMPLETION DATE IS: "+item.text)
+
+    #print (y)
+    #print (y[0])
+
+  for item in xml.findAll('location_countries'):
+
+    #print (item["data"])
+    #item1 = item.read()
+   # y=re.findall('<agency>(.*)</agency>',str(item))
+    print ("COUNTRIES ARE: "+item.text)
     print ('*' * 10)
     #print (y)
     #print (y[0])
