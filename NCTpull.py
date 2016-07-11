@@ -7,7 +7,7 @@ import urllib.request
 import re
 
 list1 = ['LTS6048'];
-
+alist = [];
 strURL1 = 'https://clinicaltrials.gov/ct2/results?term='
 strURL2 = '&Search=Searchdisplayxml=true'
 for indic1 in list1:
@@ -26,10 +26,39 @@ for indic1 in list1:
     #item1 = item.read()
    # y=re.findall('<agency>(.*)</agency>',str(item))
     print ("NCT ID: "+ item.text)
+    var1=item.text
     #print (y)
     #print (y[0])
 
-"""
+    alist.insert(0,var1)
+
+
+    print (alist)
+
+
+#list1 = ['NCT01487096', 'NCT00261846'];
+
+strURL11 = 'https://clinicaltrials.gov/show/'
+strURL21 = '?displayxml=true'
+for indic11 in alist:
+
+
+  strURL31 = strURL11 + indic11 + strURL21
+#req = urllib.request.urlopen('https://clinicaltrials.gov/show/NCT01487096?displayxml=true')
+  req = urllib.request.urlopen(strURL31)
+
+
+  xml = bs4.BeautifulSoup(req, 'xml')
+
+  for item in xml.findAll('nct_id'):
+
+    #print (item["data"])
+    #item1 = item.read()
+   # y=re.findall('<agency>(.*)</agency>',str(item))
+    print ("NCT ID: "+ item.text)
+    #print (y)
+    #print (y[0])
+
 
 
   for item in xml.findAll('agency'):
@@ -69,19 +98,4 @@ for indic1 in list1:
     #print (y[0])
 
 
-  for item in xml.findAll('country'):
-
-    #print (item["data"])
-    #item1 = item.read()
-   # y=re.findall('<agency>(.*)</agency>',str(item))
-    lines = item.text
-    item = item.strip()
-    tokens = item.split()
-    #print (lines)
-    #lines1 = lines.readlines()
-    #lines = item.read().splitlines()
-    #print ("LOCATION: "+item.text)
-    #print (y)
-    #print (y[0])
-
-"""
+ 
