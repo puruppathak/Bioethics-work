@@ -6,7 +6,10 @@ import lxml
 import urllib.request
 import re
 
-list1 = ['LTS6048'];
+
+
+list1 = ['LTS6050','LTS6048'];
+len1 = len(list1)-1
 alist = [];
 strURL1 = 'https://clinicaltrials.gov/ct2/results?term='
 strURL2 = '&Search=Searchdisplayxml=true'
@@ -30,10 +33,10 @@ for indic1 in list1:
     #print (y)
     #print (y[0])
 
-    alist.insert(0,var1)
 
-
-    print (alist)
+    for i in range(0,len1):
+      alist.insert(i,var1)
+      print (alist)
 
 
 #list1 = ['NCT01487096', 'NCT00261846'];
@@ -98,4 +101,3 @@ for indic11 in alist:
     #print (y[0])
 
 
- 
