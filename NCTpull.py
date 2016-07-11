@@ -8,7 +8,7 @@ import re
 
 
 
-list1 = ['LTS6050','LTS6048'];
+list1 = ['NN1250-1876','LTS6048'];
 len1 = len(list1)-1
 alist = [];
 strURL1 = 'https://clinicaltrials.gov/ct2/results?term='
@@ -28,7 +28,9 @@ for indic1 in list1:
     #print (item["data"])
     #item1 = item.read()
    # y=re.findall('<agency>(.*)</agency>',str(item))
-    print ("NCT ID: "+ item.text)
+
+    #print ("NCT ID: "+ item.text)
+
     var1=item.text
     #print (y)
     #print (y[0])
@@ -36,7 +38,7 @@ for indic1 in list1:
 
     for i in range(0,len1):
       alist.insert(i,var1)
-      print (alist)
+     # print (alist)
 
 
 #list1 = ['NCT01487096', 'NCT00261846'];
@@ -97,6 +99,7 @@ for indic11 in alist:
     #item1 = item.read()
    # y=re.findall('<agency>(.*)</agency>',str(item))
     print ("PRIMARY COMPLETION DATE IS: "+item.text)
+    print ('*' * 10)
     #print (y)
     #print (y[0])
 
