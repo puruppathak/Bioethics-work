@@ -8,7 +8,7 @@ import re
 
 
 
-list1 = ['NN1250-1876','LTS6048'];
+list1 = ['A1102', 'CLDE225XUS20'];
 len1 = len(list1)-1
 alist = [];
 strURL1 = 'https://clinicaltrials.gov/ct2/results?term='
