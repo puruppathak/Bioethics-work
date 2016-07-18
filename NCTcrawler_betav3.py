@@ -32,12 +32,14 @@ VerificationDate=[]
 FirstRecvResultDate=[]
 PCD=[]
 Countries=[]
+Condition=[]
 IsFDA=[]
 Is801=[]
+acronym=[]
 FirstRecvResultDispoDate=[]
 str12="NULL"
 
-list1 = ['ALI6504','2001','EFC10531','BDR6639','BEQ10169','BEX6038','EFC10531','EFC6049',' HWA486-1024','INT10563','INT10564','INT11697','INT11720','INT11932','INT6039','INT6040','LTS6047','LTS6048','LTS6050','PDY6045','PDY6046','PDY11684'];
+list1 = ['1001','1002','1024','1932','2001','ALI6504','BDR6639','BEQ10169','BEX6038','EFC10531','EFC6049','HWA486-1024','INT10563','INT10564','INT11697','INT11720','INT11932','INT6039','INT6040','LTS6047','LTS6048','LTS6050','PDY6045','PDY6046','PDY11684','PHM0086','PMH0091','PMH0091','POH0290','POH0295','POP11432','POP6505','POP6507','SIM0041','TDR10892','TES10852','EFC6058','EFC6260','EFC10891'];
 
 #'ALI6504','BDR6639','BEQ10169','BEX6038','EFC10531','EFC6049',' HWA486-1024','INT10563','INT10564','INT11697','INT11720','INT11932','INT6039','INT6040','LTS6047','LTS6048','LTS6050','PDY6045','PDY6046','PDY11684'
 len1 = len(list1)-1
@@ -303,8 +305,7 @@ for indic11 in alist:
       NewItem = party.text
 
     #for i in range(0,len1):
-     FirstRecvResultDate.append(NewItem)
-
+      FirstRecvResultDate.append(NewItem)
 
     for item in xml.findAll('clinical_study'):
      party = item.find('firstreceived_results_disposition_date')
@@ -314,7 +315,8 @@ for indic11 in alist:
       NewItem = party.text
 
     #for i in range(0,len1):
-     FirstRecvResultDispoDate.append(NewItem)
+      FirstRecvResultDispoDate.append(NewItem)
+
 
 
 
@@ -341,6 +343,17 @@ for indic11 in alist:
       Countries.append(NewItem)
 
 
+    for item in xml.findAll('clinical_study'):
+     party = item.find('condition')
+     if party is None:
+      Condition.append("NULL")
+     else:
+      NewItem = party.text
+
+    #for i in range(0,len1):
+      Condition.append(NewItem)
+
+
 
     for item in xml.findAll('clinical_study'):
      party = item.find('is_fda_regulated')
@@ -351,6 +364,16 @@ for indic11 in alist:
 
     #for i in range(0,len1):
       IsFDA.append(NewItem)
+
+    for item in xml.findAll('clinical_study'):
+     party = item.find('acronym')
+     if party is None:
+      acronym.append("NULL")
+     else:
+      NewItem = party.text
+
+    #for i in range(0,len1):
+      acronym.append(NewItem)
 
 
 
@@ -387,17 +410,17 @@ for indic11 in alist:
 
 
 print(OrgID)
-f = open('mydata3.csv', 'wt')
+f = open('Aubagio.csv', 'wt')
 try:
     writer = csv.writer(f)
-    writer.writerow( ('Org ID', 'NCT ID','Brief Title','Overall status','Agency','Gender','Minimum Age','Phase','Agency class','Study type','Study Design','Secondary ID','First received','Start Date','Completion date','Last changed date','Verification date','First received result date','Certificate of Delay/ Disposition Date','PCD','Countries','IS FDA regulated','IS section 801'))
+    writer.writerow( ('Org ID', 'NCT ID','Brief Title','Condition','Overall status','Acronym','Agency','Gender','Minimum Age','Phase','Agency class','Study type','Study Design','Secondary ID','First received','Start Date','Completion date','Last changed date','Verification date','First received result date','Certificate of Delay/ Disposition Date','PCD','Countries','IS FDA regulated','IS section 801'))
     #mylist = list(set(list01))
     #mylist1 = list(set(list02))
     #mylist2 = list(set(list03))
     #for i1 in list11:
-    for i1,i2,i3,i4,i5,i6,i7,i8,i9,i10,i11,i12,i13,i14,i15,i16,i17,i18,i19,i20, i21, i22, i23 in zip(OrgID, NCTID, Btitle, OverallStatus, agency, gender, MAge, Phase1, AgencyClass, StudyType, StudyDesign, SecID, FirstRecv, SDate, ComplDate, LastChangedDate, VerificationDate, FirstRecvResultDate, FirstRecvResultDispoDate, PCD, Countries, IsFDA,Is801):
+    for i1,i2,i3,i4,i5,i6,i7,i8,i9,i10,i11,i12,i13,i14,i15,i16,i17,i18,i19,i20, i21, i22, i23,i24, i25 in zip(OrgID, NCTID, Btitle,Condition, OverallStatus,acronym, agency, gender, MAge, Phase1, AgencyClass, StudyType, StudyDesign, SecID, FirstRecv, SDate, ComplDate, LastChangedDate, VerificationDate, FirstRecvResultDate, FirstRecvResultDispoDate, PCD, Countries, IsFDA,Is801):
 
-         writer.writerow( (i1, i2, i3, i4, i5, i6, i7, i8, i9, i10, i11, i12, i13, i14, i15, i16, i17, i18, i19, i20, i21, i22, i23) )
+         writer.writerow( (i1, i2, i3, i4, i5, i6, i7, i8, i9, i10, i11, i12, i13, i14, i15, i16, i17, i18, i19, i20, i21, i22, i23, i24, i25) )
 finally:
     f.close()
 
