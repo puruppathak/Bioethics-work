@@ -19,6 +19,12 @@ month_dict = {'Jan':'1', 'Feb':'2', 'Mar':'3', 'Apr':'4', 'May':'5', 'Jun':'6', 
 #for i in range(1, 13, 1):
 #    next(csv_f, None)
 
+name = input("What's the drug name? ")
+name1 = input("What's second the drug name? ")
+
+
+
+
 allTrials = []
 first_stage_cleared = []
 registered_trials = []
@@ -35,7 +41,7 @@ for row in csv_f:
 print ("number of trials analyzed is " + str(len(allTrials)-1))
 
 for row in allTrials:
-    if("aubagio" in str(row[5]).lower() or "teriflunomide" in str(row[5]).lower()):
+    if(name.lower() in str(row[5]).lower() or name1.lower() in str(row[5]).lower()):
         registered_trials.append(row)
 print ("number of valid trials "+str(len(registered_trials)-1))
 for row in registered_trials:
@@ -50,10 +56,7 @@ f = open('validation2.csv', 'wt')
 try:
     writer = csv.writer(f)
     writer.writerow( ('Org ID', 'NCT ID','Brief Title','Condition','Overall status','Intervention','Acronym','Agency','Gender','Minimum Age','Phase','Agency class','Study Type','Study Design','Secondary ID','First received','Start Date','Completion date','Last changed date','Verification date','First received result date','Certificate of Delay/ Disposition Date','PCD','Countries','IS FDA regulated','IS section 801'))
-    #mylist = list(set(list01))
-    #mylist1 = list(set(list02))
-    #mylist2 = list(set(list03))
-    #for i1 in list11:
+    
     for i1 in (registered_trials):
 
          writer.writerow( (i1) )
