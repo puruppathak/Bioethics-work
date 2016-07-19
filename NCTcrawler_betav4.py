@@ -37,6 +37,7 @@ Countries=[]
 Condition=[]
 IsFDA=[]
 Is801=[]
+Intervention=[]
 acronym=[]
 FirstRecvResultDispoDate=[]
 str12="NULL"
@@ -396,6 +397,14 @@ for indic11 in result:
     #for i in range(0,len1):
       Is801.append(NewItem)
 
+    for item in xml.findAll('clinical_study'):
+       y=re.findall('<intervention_name>(.*)</intervention_name>',str(item))
+       if y:
+        Intervention.append(y)
+       else:
+        Intervention.append("NULL")
+
+
 
  except URLError as e:
       if hasattr(e, 'reason'):
@@ -416,14 +425,14 @@ for indic11 in result:
 f = open('data2.csv', 'wt')
 try:
     writer = csv.writer(f)
-    writer.writerow( ('Org ID', 'NCT ID','Brief Title','Condition','Overall status','Acronym','Agency','Gender','Minimum Age','Phase','Agency class','Study type','Study Design','Secondary ID','First received','Start Date','Completion date','Last changed date','Verification date','First received result date','Certificate of Delay/ Disposition Date','PCD','Countries','IS FDA regulated','IS section 801'))
+    writer.writerow( ('Org ID', 'NCT ID','Brief Title','Condition','Overall status','Intervention name','Acronym','Agency','Gender','Minimum Age','Phase','Agency class','Study type','Study Design','Secondary ID','First received','Start Date','Completion date','Last changed date','Verification date','First received result date','Certificate of Delay/ Disposition Date','PCD','Countries','IS FDA regulated','IS section 801'))
     #mylist = list(set(list01))
     #mylist1 = list(set(list02))
     #mylist2 = list(set(list03))
     #for i1 in list11:
-    for i1,i2,i3,i4,i5,i6,i7,i8,i9,i10,i11,i12,i13,i14,i15,i16,i17,i18,i19,i20, i21, i22, i23,i24, i25 in zip(OrgID, NCTID, Btitle,Condition, OverallStatus,acronym, agency, gender, MAge, Phase1, AgencyClass, StudyType, StudyDesign, SecID, FirstRecv, SDate, ComplDate, LastChangedDate, VerificationDate, FirstRecvResultDate, FirstRecvResultDispoDate, PCD, Countries, IsFDA,Is801):
+    for i1,i2,i3,i4,i5,i6,i7,i8,i9,i10,i11,i12,i13,i14,i15,i16,i17,i18,i19,i20, i21, i22, i23,i24, i25, i26 in zip(OrgID, NCTID, Btitle,Condition, OverallStatus,Intervention, acronym, agency, gender, MAge, Phase1, AgencyClass, StudyType, StudyDesign, SecID, FirstRecv, SDate, ComplDate, LastChangedDate, VerificationDate, FirstRecvResultDate, FirstRecvResultDispoDate, PCD, Countries, IsFDA,Is801):
 
-         writer.writerow( (i1, i2, i3, i4, i5, i6, i7, i8, i9, i10, i11, i12, i13, i14, i15, i16, i17, i18, i19, i20, i21, i22, i23, i24, i25) )
+         writer.writerow( (i1, i2, i3, i4, i5, i6, i7, i8, i9, i10, i11, i12, i13, i14, i15, i16, i17, i18, i19, i20, i21, i22, i23, i24, i25,i26) )
 finally:
     f.close()
 
