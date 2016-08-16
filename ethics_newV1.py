@@ -8,7 +8,7 @@ import operator
 #f=repr(open('Aubagio_11.11.14.xlsx', 'rU'))
 isDrugFDA = True
 
-#to be added in column
+
 isManufacturedInUS = False
 isExportedToUS = False
 isTrialUnderFDA = True
