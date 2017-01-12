@@ -24,7 +24,7 @@ if (!isset($_SESSION["is_auth"])) {
 		switch ($select) {
 		
 			case 'all':
-				$sql = "SELECT * FROM master";
+				$sql = "SELECT * FROM master where FDA_Drug_Name LIKE '%$search%' ORDER BY FDA_Phase DESC";
 				$records = mysql_query($sql);
 			break;
 			
@@ -34,7 +34,7 @@ if (!isset($_SESSION["is_auth"])) {
 				$records = mysql_query($sql);
 			break;
 
-			case 'drug':
+			case 'drugN':
 				$sql = "SELECT * FROM master where FDA_Drug_Name LIKE '%$search%'";
 				$records = mysql_query($sql);
 			break;
@@ -53,6 +53,36 @@ if (!isset($_SESSION["is_auth"])) {
 				$sql = "SELECT * FROM master where FDA_Sponsor_Country LIKE '%$search%'";
 				$records = mysql_query($sql);
 			break;
+
+            case 'indications':
+				$sql = "SELECT * FROM master";
+				$records = mysql_query($sql);
+			break;
+           
+            case 'insomnia':
+				$sql = "SELECT * FROM master where CT_Conditions LIKE '%" .'insomnia'. "%'";
+				$records = mysql_query($sql);
+			break;
+
+			case 'Gaucher':
+				$sql = "SELECT * FROM master where CT_Conditions LIKE '%" .'Gaucher Disease'. "%'";
+				$records = mysql_query($sql);
+			break;
+			
+			case 'IPF':
+				$sql = "SELECT * FROM master where CT_Conditions LIKE '%" .'Idiopathic'. "%'";
+				$records = mysql_query($sql);
+			break;
+
+			case 'T2D':
+				$sql = "SELECT * FROM master where CT_Conditions LIKE '%" .'Diabetes'. "%'";
+				$records = mysql_query($sql);
+			break; 
+            case 'HCV':
+				$sql = "SELECT * FROM master where CT_Conditions LIKE '%" .'Hepatitis C'. "%'";
+				$records = mysql_query($sql);
+			break; 
+
 			
 		}
 	}
@@ -87,12 +117,30 @@ if (!isset($_SESSION["is_auth"])) {
 </style>
 
 <body>
+
+    <h1 align=right>Top companies</h1>
+    <div align = "right">
+        <ul> 
+        <p><a href="ima.html" style="font-size:36px;" style="color:blue;" >Pfizer</a></p>
+        <p><a href="sanofi.html" style="font-size:36px;">Sanofi</a></p>
+        <p><a href="novartis.html" style="font-size:36px;">Novartis</a></p>
+        </ul>
+
+    </div>
+
+
+    <form action="LegalPage.php">
+    <input type="submit" value="Score Page" />
+    </form>
+   
+
 	<h1 align=center>Bioethics International Database</h1>
 	<div align = "center">	
 	<form action = "WebApp.php" method = "POST">
+		<p>
 		Basic Search   <select name = "select">
 		  <option value="all">All</option>
-		  <option value="drug">Drug Name</option>
+		  <option value="drugN">Drug Name</option>
 		  <option value="org_id">Org ID</option>
 		  <option value="nct">NCT</option>
 		  <option value="sponsor">Sponsor</option>
@@ -102,8 +150,13 @@ if (!isset($_SESSION["is_auth"])) {
 		<input type = "text" name = "search" placeholder = "Search for drugs..."/>
 		<input type = "submit" name = "submit" value = ">>"/>
 
-       <p>
-  Search in Ascending <select name = "select">
+    </p>
+    </form>
+ 
+   <form action = "WebApp.php" method = "POST">
+      <p>
+    
+          Search in Ascending <select name = "select">
 		  <option value="all">All</option>
 		  <option value="drug">Drug Name</option>
 		  <option value="org_id">Org ID</option>
@@ -115,8 +168,8 @@ if (!isset($_SESSION["is_auth"])) {
 		<input type = "text" name = "search" placeholder = "Search for drugs..."/>
 		<input type = "submit" name = "submit" value = ">>"/>
        </p>
-
-
+       </form>
+       <form action = "WebApp.php" method = "POST">
        <p>
         Search in Descending <select name = "select">
 		  <option value="all">All</option>
@@ -131,6 +184,24 @@ if (!isset($_SESSION["is_auth"])) {
 		<input type = "submit" name = "submit" value = ">>"/>
        </p>
 
+      <form action = "WebApp.php" method = "POST">
+      <p>
+    
+          Search by indication <select name = "select">
+		  <option value="indications">All indications</option>
+		  <option value="insomnia">Insomnia</option>
+		  <option value="Gaucher">Gaucher Disease</option>
+		  <option value="IPF">Idiopathic Pulmonary Fibrosis (IPF)</option>
+		  <option value="T2D">Type 2 Diabetes</option>
+		  <option value="HCV">Chronic Hepatitis C Virus (HCV)</option>
+		</select>
+		
+		<input type = "text" name = "search" placeholder = "Search by indication"/>
+		<input type = "submit" name = "submit" value = ">>"/>
+       </p>
+       </form>
+   
+
 
 
 	</form> 
@@ -139,6 +210,10 @@ if (!isset($_SESSION["is_auth"])) {
   		<a href="logout.php">Logout</a>
 	</p><br/><br/>
 	
+
+    
+
+
 	<table>
 		<tr>
 			<th>FDA_Drug_Name</th>
