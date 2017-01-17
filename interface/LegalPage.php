@@ -30,11 +30,15 @@ if (!isset($_SESSION["is_auth"])) {
 			
 
             
-			case 'nct':
-				$sql = "SELECT * FROM legal_compliance";
+			case 'dname':
+				$sql = "SELECT * FROM legal_compliance where Drug LIKE '%$search%'";
 				$records = mysql_query($sql);
 			break;
 			
+			case 'spon1':
+				$sql = "SELECT * FROM legal_compliance where Company LIKE '%" .'$search'. "%'";
+				$records = mysql_query($sql);
+			break;
 			
 		}
 	}
@@ -81,7 +85,7 @@ if (!isset($_SESSION["is_auth"])) {
     </div>
 
     
-    <form action="WebApp.php">
+    <form action="LegalPage.php">
     <input type="submit" value="Previous" />
     </form>
     
@@ -89,58 +93,21 @@ if (!isset($_SESSION["is_auth"])) {
 	<h1 align=center>Bioethics International Database: Score Page</h1>
 	<div align = "center">	
 	<form action = "LegalPage.php" method = "POST">
+		<p>
 		Basic Search   <select name = "select">
 		  <option value="all">All</option>
-		  <option value="drug">Drug Name</option>
-		  <option value="org_id">Org ID</option>
-		  <option value="nct">NCT</option>
-		  <option value="sponsor">Sponsor</option>
-		  <option value="drugASC">Drug Name ASC</option>
+		  
+		  <option value="dname">Drug Name</option>
+		  
 		</select>
 		
 		<input type = "text" name = "search" placeholder = "Search for drugs..."/>
 		<input type = "submit" name = "submit" value = ">>"/>
 
-    
-
- 
-
-
-    
-  Search in Ascending <select name = "select">
-		  <option value="all">All</option>
-		  <option value="drug">Drug Name</option>
-		  <option value="org_id">Org ID</option>
-		  <option value="nct">NCT</option>
-		  <option value="sponsor">Sponsor</option>
-		  <option value="drugASC">Drug Name ASC</option>
-		</select>
+    </p>
+    </form>
 		
-		<input type = "text" name = "search" placeholder = "Search for drugs..."/>
-		<input type = "submit" name = "submit" value = ">>"/>
-       </p>
-
-
-       <p>
-        Search in Descending <select name = "select">
-		  <option value="all">All</option>
-		  <option value="drug">Drug Name</option>
-		  <option value="org_id">Org ID</option>
-		  <option value="nct">NCT</option>
-		  <option value="sponsor">Sponsor</option>
-		  <option value="drugASC">Drug Name ASC</option>
-		</select>
-		
-		<input type = "text" name = "search" placeholder = "Search for drugs..."/>
-		<input type = "submit" name = "submit" value = ">>"/>
-       </p>
-
-
-
-
-
-	</form> 
-	</div>
+   	</div>
 	<p align="right">
   		<a href="logout.php">Logout</a>
 	</p><br/><br/>

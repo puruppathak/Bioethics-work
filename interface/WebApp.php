@@ -24,15 +24,38 @@ if (!isset($_SESSION["is_auth"])) {
 		switch ($select) {
 		
 			case 'all':
-				$sql = "SELECT * FROM master where FDA_Drug_Name LIKE '%$search%' ORDER BY FDA_Phase DESC";
+				$sql = "SELECT * FROM master where FDA_Drug_Name LIKE '%$search%'";
+				$records = mysql_query($sql);
+			break;
+			
+
+            case 'appr':
+				$sql = "SELECT * FROM master where FDA_Drug_Approval_Date LIKE '%$search%'";
 				$records = mysql_query($sql);
 			break;
 			
 
             case 'drugASC':
-				$sql = "SELECT * FROM master where FDA_Drug_Name LIKE '%$search%' ORDER BY FDA_Phase DESC";
+				$sql = "SELECT * FROM master where FDA_Drug_Name LIKE '%$search%' OR FDA_Drug_Approval_Date LIKE '%$search%' ORDER BY FDA_Phase ASC";
 				$records = mysql_query($sql);
 			break;
+
+            case 'drugASCPP':
+				$sql = "SELECT * FROM master where FDA_Drug_Name LIKE '%$search%' OR FDA_Drug_Approval_Date LIKE '%$search%' ORDER BY FDA_Participants ASC";
+				$records = mysql_query($sql);
+			break;
+
+
+            case 'drugDSC':
+				$sql = "SELECT * FROM master where FDA_Drug_Name LIKE '%$search%' OR FDA_Drug_Approval_Date LIKE '%$search%' ORDER BY FDA_Phase DESC";
+				$records = mysql_query($sql);
+			break;
+
+            case 'drugdscpp':
+				$sql = "SELECT * FROM master where FDA_Drug_Name LIKE '%$search%' OR FDA_Drug_Approval_Date LIKE '%$search%' ORDER BY FDA_Participants DESC";
+				$records = mysql_query($sql);
+			break;
+
 
 			case 'drugN':
 				$sql = "SELECT * FROM master where FDA_Drug_Name LIKE '%$search%'";
@@ -144,7 +167,7 @@ if (!isset($_SESSION["is_auth"])) {
 		  <option value="org_id">Org ID</option>
 		  <option value="nct">NCT</option>
 		  <option value="sponsor">Sponsor</option>
-		  <option value="drugASC">Drug Name ASC</option>
+		  <option value="appr">Approval Date</option>
 		</select>
 		
 		<input type = "text" name = "search" placeholder = "Search for drugs..."/>
@@ -156,34 +179,29 @@ if (!isset($_SESSION["is_auth"])) {
    <form action = "WebApp.php" method = "POST">
       <p>
     
-          Search in Ascending <select name = "select">
+          Search in Ascending sorted <select name = "select">
 		  <option value="all">All</option>
-		  <option value="drug">Drug Name</option>
-		  <option value="org_id">Org ID</option>
-		  <option value="nct">NCT</option>
-		  <option value="sponsor">Sponsor</option>
-		  <option value="drugASC">Drug Name ASC</option>
+		   <option value="drugASCPP">Asc sort on No of participants</option>
+		  <option value="drugASC">Asc sort on phase</option>
 		</select>
 		
 		<input type = "text" name = "search" placeholder = "Search for drugs..."/>
 		<input type = "submit" name = "submit" value = ">>"/>
        </p>
        </form>
+
        <form action = "WebApp.php" method = "POST">
        <p>
-        Search in Descending <select name = "select">
+        Search in Descending sorted <select name = "select">
 		  <option value="all">All</option>
-		  <option value="drug">Drug Name</option>
-		  <option value="org_id">Org ID</option>
-		  <option value="nct">NCT</option>
-		  <option value="sponsor">Sponsor</option>
-		  <option value="drugASC">Drug Name ASC</option>
+		  <option value="drugdscpp">Desc sort on No of participants</option>
+		  <option value="drugDSC">Desc sort on phase</option>
 		</select>
 		
 		<input type = "text" name = "search" placeholder = "Search for drugs..."/>
 		<input type = "submit" name = "submit" value = ">>"/>
        </p>
-
+       </form>
       <form action = "WebApp.php" method = "POST">
       <p>
     
