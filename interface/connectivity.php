@@ -14,7 +14,7 @@
 
 
 <?php
-session_start();
+session_start();  // session starts
 include_once("connectdb.php");
 
 //select database
