@@ -5,7 +5,7 @@
 
 	<script type="text/javascript">
 	function Invalid() {
-	    alert("Wrong user ID and password!");
+	    alert("Wrong credentials. Try again.");
 	}
 	</script>
 
@@ -24,10 +24,11 @@ mysql_select_db('puru', $db) or die("Couldn't find DB!");
 	    
 		$username = $_POST["username"];
 		$password = $_POST["password"];
+		$empid = $_POST["empid"];
 		$_SESSION["username"] = $username;
 		$_SESSION['is_auth'] = true;
 
-	    $query = "Select * from usercredentials where User_Name='$username' and Password='$password';";
+	    $query = "Select * from usercredentials where User_Name='$username' and Password='$password' and EmpID='$empid';";
 		$result = mysql_query($query);
 
 	    if (mysql_num_rows($result)) {

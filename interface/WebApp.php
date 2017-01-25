@@ -152,6 +152,11 @@ if (!isset($_SESSION["is_auth"])) {
     </div>
 
 
+    <form action="base.html">
+    <input type="submit" value="Data entry" />
+    </form>
+   
+
     <form action="LegalPage.php">
     <input type="submit" value="Score Page" />
     </form>
@@ -225,7 +230,7 @@ if (!isset($_SESSION["is_auth"])) {
 	</form> 
 	</div>
 	<p align="right">
-  		<a href="logout.php">Logout</a>
+  		<a href="start.html">Logout</a>
 	</p><br/><br/>
 	
 
@@ -579,3 +584,6 @@ if (!isset($_SESSION["is_auth"])) {
 	</table>
 </body>
 </html>
+
+
+  

@@ -1,23 +1,16 @@
 <?php
-
 error_reporting(0);
-
 session_start();
-
 if (!isset($_SESSION["is_auth"])) {
 	header("location: Login.html");
 	exit();
 }
-
 	include_once("connectdb.php");
-
 	//select database
 	mysql_select_db('puru', $db) or die("Couldn't find DB!");
-
 	if(isset($_POST['search'])){
 		$search = $_POST['search'];
 	}
-
 	if(isset($_POST['select'])){
 		$select = $_POST['select'];
 		
@@ -28,7 +21,6 @@ if (!isset($_SESSION["is_auth"])) {
 				$records = mysql_query($sql);
 			break;
 			
-
             
 			case 'dname':
 				$sql = "SELECT * FROM legal_compliance where Drug LIKE '%$search%'";
@@ -53,15 +45,12 @@ if (!isset($_SESSION["is_auth"])) {
 	    border-collapse: collapse;
 	    width: 100%;
 	}
-
 	th, td {
 	    padding: 8px;
 	    text-align: left;
 	    border-bottom: 1px solid #ddd;
 	}
-
 	tr:nth-child(even) {background-color: #f2f2f2}
-
 	th {
 	    background-color: #2eb8b8;
 	    color: white;
@@ -111,7 +100,14 @@ if (!isset($_SESSION["is_auth"])) {
 	<p align="right">
   		<a href="logout.php">Logout</a>
 	</p><br/><br/>
-	
+
+
+     <p align="right">
+  		<a href="LegalPage2.php">Page2</a>
+	</p><br/><br/>
+
+
+
 	<table>
 		<tr>
 			<th>Year</th>
