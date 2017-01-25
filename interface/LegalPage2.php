@@ -6,7 +6,7 @@ if (!isset($_SESSION["is_auth"])) {
 	exit();
 }
 	include_once("connectdb.php");
-	//select database
+	//select database here
 	mysql_select_db('puru', $db) or die("Couldn't find DB!");
 		if(isset($_POST['search'])){
 	
