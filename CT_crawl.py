@@ -5,7 +5,7 @@ import lxml
 import urllib.request
 import re
 
-list1 = ['NCT01487096', 'NCT00261846'];
+list1 = ['NCT01487096', 'NCT00261846']; # NCTs go in this list
 
 strURL1 = 'https://clinicaltrials.gov/show/'
 strURL2 = '?displayxml=true'
