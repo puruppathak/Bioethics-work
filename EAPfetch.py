@@ -15,7 +15,7 @@ csv_f = csv.reader(f)
 month_dict = {'Jan':'1', 'Feb':'2', 'Mar':'3', 'Apr':'4', 'May':'5', 'Jun':'6', 'Jul':'7', 'Aug':'8', 'Sep':'9', 'Oct':'10', 'Nov':'11', 'Dec':'12'}
 
 #for i in range(1, 13, 1):
-#    next(csv_f, None)
+
 
 allTrials = []
 first_stage_cleared = []
