@@ -1,7 +1,7 @@
 
 
 
-
+import enchant
 import ast
 import re
 import csv
@@ -14,9 +14,9 @@ IDs=[]
 IDlist=[]
 Sentence=[]
 Phase=[]
-#txt1="I like to eat apple. Me too. Let's go buy some apples."
 define_words = 'study'
-#print (re.findall(r"([^.]*?%s[^.]*\.)" % define_words,txt)  )
+wrong=[]
+correct=[]
 
 tuples = re.findall(r"([^.]*?%s[^.]*\.)" % define_words,filetext)
 for tuple in tuples:
@@ -70,6 +70,20 @@ for item in IDlist:
 
 
 
+d = enchant.Dict("en_US")
+
+AllIDs = list(set(IDs))
+
+
+
+
+
+for ID in AllIDs:
+ if d.check(ID) == True:
+    wrong.append(ID)
+
+ elif d.check(ID) == False:
+    correct.append(ID)
 
 
 print(IDs)
@@ -133,7 +147,7 @@ len1 = len(list1)-1
 alist = [];
 strURL1 = 'https://clinicaltrials.gov/ct2/results?term='
 strURL2 = '&Search=Searchdisplayxml=true'
-for indic1 in IDs:
+for indic1 in correct:
 
 
   strURL3 = strURL1 + indic1 + strURL2
