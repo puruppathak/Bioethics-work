@@ -546,14 +546,14 @@ print(FDAOrg1)
 f = open('Full_temp_data.csv', 'wt')
 try:
     writer = csv.writer(f)
-    writer.writerow( ('FDA Org','Org ID', 'NCT ID','Brief Title','Condition','Overall status','Intervention name','Acronym','Agency','Gender','Minimum Age','Phase','Agency class','Study type','Study Design','Secondary ID','First received','Start Date','Completion date','Last changed date','Verification date','First received result date','Certificate of Delay/ Disposition Date','PCD','Countries','Removed countries','IS FDA regulated','IS section 801'))
+    writer.writerow( ('Org ID', 'NCT ID','Brief Title','Condition','Overall status','Intervention name','Acronym','Agency','Gender','Minimum Age','Phase','Agency class','Study type','Study Design','Secondary ID','First received','Start Date','Completion date','Last changed date','Verification date','First received result date','Certificate of Delay/ Disposition Date','PCD','Countries','Removed countries','IS FDA regulated','IS section 801'))
     #mylist = list(set(list01))
     #mylist1 = list(set(list02))
     #mylist2 = list(set(list03))
     #for i1 in list11:
-    for i1,i111,i2,i3,i4,i5,i6,i7,i8,i9,i10,i11,i12,i13,i14,i15,i16,i17,i18,i19,i20, i21, i22, i23,i24, i25, i26, i27 in zip(NCTID,OrgID, NCTID, Btitle,Condition, OverallStatus,Intervention, acronym, agency, gender, MAge, Phase1, AgencyClass, StudyType, StudyDesign, SecID, FirstRecv, SDate, ComplDate, LastChangedDate, VerificationDate, FirstRecvResultDate, FirstRecvResultDispoDate, PCD, Countries, Rm_Countries, IsFDA,Is801):
+    for i111,i2,i3,i4,i5,i6,i7,i8,i9,i10,i11,i12,i13,i14,i15,i16,i17,i18,i19,i20, i21, i22, i23,i24, i25, i26, i27 in zip(OrgID, NCTID, Btitle,Condition, OverallStatus,Intervention, acronym, agency, gender, MAge, Phase1, AgencyClass, StudyType, StudyDesign, SecID, FirstRecv, SDate, ComplDate, LastChangedDate, VerificationDate, FirstRecvResultDate, FirstRecvResultDispoDate, PCD, Countries, Rm_Countries, IsFDA,Is801):
 
-         writer.writerow( (i1,i111, i2, i3, i4, i5, i6, i7, i8, i9, i10, i11, i12, i13, i14, i15, i16, i17, i18, i19, i20, i21, i22, i23, i24, i25,i26, i27) )
+         writer.writerow( (i111, i2, i3, i4, i5, i6, i7, i8, i9, i10, i11, i12, i13, i14, i15, i16, i17, i18, i19, i20, i21, i22, i23, i24, i25,i26, i27) )
 finally:
     f.close()
 
@@ -565,7 +565,6 @@ with open('Missing.csv', 'w') as f:
         writer.writerow([val])
 
 """
-
 
 
 f=open('Full_temp_data.csv', 'rU')
@@ -596,7 +595,7 @@ for row in csv_f:
 print ("number of trials analyzed is " + str(len(allTrials)-1))
 
 for row in allTrials:
-    if (name1.lower() in str(row[6]).lower() or name2.lower() in str(row[6]).lower() or name3.lower() in str(row[8]).lower() or name4.lower() in str(row[8]).lower()):
+    if (name1.lower() in str(row[5]).lower() or name2.lower() in str(row[5]).lower() or name3.lower() in str(row[7]).lower() or name4.lower() in str(row[7]).lower()):
         registered_trials.append(row)
 print ("number of valid trials "+str(len(registered_trials)))
 for row in registered_trials:
@@ -612,7 +611,7 @@ Stage1File = input("What would like to name the output file as?(Eg: xyz.csv) ")
 f = open(Stage1File, 'wt')
 try:
     writer = csv.writer(f)
-    writer.writerow( ('FDA Org','Org ID', 'NCT ID','Brief Title','Condition','Overall status','Intervention','Acronym','Agency','Gender','Minimum Age','Phase','Agency class','Study Type','Study Design','Secondary ID','First received','Start Date','Completion date','Last changed date','Verification date','First received result date','Certificate of Delay/ Disposition Date','PCD','Countries','IS FDA regulated','IS section 801'))
+    writer.writerow( ('Org ID', 'NCT ID','Brief Title','Condition','Overall status','Intervention','Acronym','Agency','Gender','Minimum Age','Phase','Agency class','Study Type','Study Design','Secondary ID','First received','Start Date','Completion date','Last changed date','Verification date','First received result date','Certificate of Delay/ Disposition Date','PCD','Countries','IS FDA regulated','IS section 801'))
 
     for i1 in (registered_trials):
 
