@@ -64,6 +64,19 @@ list1 = ['AI443014']
 
 ##
 
+
+import difflib
+
+b='AI444014'
+a='AI444-014'
+seq=difflib.SequenceMatcher(None, a,b)
+d=seq.ratio()*100
+print(d)
+
+
+
+##
+
 def ceil(n):   # This function is used for page number calculation.
     res = int(n)
     return res if res == n or n < 0 else res+1
@@ -629,9 +642,15 @@ print ("number of valid trials "+str(len(registered_trials)))
 for row in registered_trials:
     print (row[1])
 
+## Matching the Org IDs now
+matchedrows=[]
+for row in registered_trials:
+    seq = difflib.SequenceMatcher(None, str(row[0]).lower(), str(row[1]).lower())
+    d = seq.ratio() * 100
+    if d<70:
+        matchedrows.append(row)
 
-
-
+## Matching finished
 
 Stage1File = input("What would like to name the output file as?(Eg: xyz.csv) ")
 
@@ -641,7 +660,7 @@ try:
     writer = csv.writer(f)
     writer.writerow( ('FDA Org','Org ID', 'NCT ID','Brief Title','Condition','Overall status','Intervention','Acronym','Agency','Gender','Minimum Age','Phase','Agency class','Study Type','Study Design','Secondary ID','First received','Start Date','Completion date','Last changed date','Verification date','First received result date','Certificate of Delay/ Disposition Date','PCD','Countries','IS FDA regulated','IS section 801'))
 
-    for i1 in (registered_trials):
+    for i1 in (matchedrows):
 
          writer.writerow( (i1) )
 finally:
