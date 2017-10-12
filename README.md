@@ -1,7 +1,13 @@
-This is the **master** repository consisting of all the projects. The projects focus on **Drugs@FDA**, **Ct.gov**, **Pubmed** and **Database automation**.
-The coding has been done in python 3/2 using **PyCharm**. Only the interface development for the database has been done using **PHP**.
-Details of all the files:
+**
 
+Master README file for Bioethics International.
+-----------------------------------------------
+
+**
+This is the **master** repository consisting of all the projects. The projects focus on **Drugs@FDA**, **Ct.gov**, **Pubmed** and **Database automation**.
+*The coding has been done in python 3/2 using **PyCharm**. Only the interface development for the database has been done using **PHP**.*
+
+Details of all the files:
 **NCTcrawler_beta.py:** Basic version: Crawls CT.gov API and writes the output in a CSV file.
 
 **NCT_crawler_betav2.py:** Added certificate of delay
